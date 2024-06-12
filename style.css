@@ -76,4 +76,90 @@ nav {
 }
 /***** nav css end *****/
 
+.app {
+    position: relative;
+    max-width: 100rem;
+    margin: 4rem auto;
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+    grid-template-rows: auto repeat(3, 15rem) auto;
+    gap: 2rem;
+    /* login animation */
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+/***** balance css start *****/
+.balance {
+    grid-column: 1 / span 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.balance-label {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: -0.2rem;
+}
+
+.balance-date {
+    font-size: 1.4rem;
+    color: #888;
+}
+
+.balance-value {
+    font-size: 4.5rem;
+    font-weight: 400;
+}
+/***** balance css end *****/
+
+/***** movements css start *****/
+.movements {
+    grid-row: 2 / span 3;
+    background-color: #fff;
+    overflow-y: scroll;
+}
+
+.movements-row {
+    padding: 2.25rem 4rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.movements-type {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #fff;
+    padding: 0.1rem 1rem;
+    border-radius: 10rem;
+    margin-right: 2rem;
+}
+
+.movements-date {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #666;
+}
+
+.movements-type-deposit {
+    background-color: #00b79f;
+}
+
+.movements-type-withdrawal {
+    background-color: #f3442a;
+}
+
+.movements-value {
+    font-size: 1.7rem;
+    margin-left: auto;
+}
+/***** movements css end *****/
+
+
+
 
