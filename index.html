@@ -48,18 +48,52 @@
                 <div class="movements-value">-1000$</div>
             </div>
         </div>
-    </main>
 
-    <!-- summary -->
-    <div class="summary">
-        <p class="summary-label">In</p>
-        <p class="summary-value summary-value-in">1000$</p>
-        <p class="summary-label">Out</p>
-        <p class="summary-value summary-value-out">1000$</p>
-        <p class="summary-label">Interest</p>
-        <p class="summary-value summary-value-interest">1000$</p>
-        <button class="btn-sort">Sort &downarrow;</button>
-    </div>
+        <!-- summary -->
+        <div class="summary">
+            <p class="summary-label">In</p>
+            <p class="summary-value summary-value-in">1000$</p>
+            <p class="summary-label">Out</p>
+            <p class="summary-value summary-value-out">1000$</p>
+            <p class="summary-label">Interest</p>
+            <p class="summary-value summary-value-interest">1000$</p>
+            <button class="btn-sort">Sort &downarrow;</button>
+        </div>
+
+        <!-- transfer -->
+        <div class="operation operation-transfer">
+            <h2>Transfer money</h2>
+            <form class="form form-transfer">
+                <input class="form-input form-input-to" type="text" />
+                <input class="form-input form-input-amount" type="number" />
+                <button class="form-btn form-btn-transfer">&rarr;</button>
+                <label class="form-label">Transfer to</label>
+                <label class="form-label">Amount</label>
+            </form>
+        </div>
+        
+        <!-- loan -->
+        <div class="operation operation-loan">
+            <h2>Request loan</h2>
+            <form class="form form-loan">
+                <input class="form-input form-input-loan-amount" type="number" />
+                <button class="form-btn form-btn-loan">&rarr;</button>
+                <label class="form-label form-label-loan">Amount</label>
+            </form>
+        </div>
+        
+        <!-- close -->
+        <div class="operation operation-close">
+            <h2>Close account</h2>
+            <form class="form form-close">
+                <input class="form-input form-input-username" type="text" />
+                <input class="form-input form-input-password" type="password" />
+                <button class="form-btn form-btn-close">&rarr;</button>
+                <label class="form-label">Confirm username</label>
+                <label class="form-label">Confirm password</label>
+            </form>
+        </div>
+    </main>
     <!-- main section end -->
     
     <!-- script file -->
