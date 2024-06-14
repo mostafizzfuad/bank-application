@@ -44,6 +44,7 @@ const accounts = [
     },
 ];
 
+
 /* ---------------- ELEMENTS ---------------- */
 const labelWelcome = document.querySelector(".welcome");
 const labelDate = document.querySelector(".date");
@@ -71,6 +72,51 @@ const inputCloseUsername = document.querySelector(".form-input-username");
 const inputClosePassword = document.querySelector(".form-input-password");
 
 
+/* ---------------- UPDATE UI ---------------- */
+function updateUI(currentAccount) {
+    displayMovements(currentAccount);
+    displaySummary(currentAccount);
+    displayBalance(currentAccount);
+}
+
+
+/* ---------------- USERNAME ---------------- */
+function createUsernames(accounts) {
+    accounts.forEach(account => {
+        account.username = account.owner.toLowerCase().split(' ').map(word => word.at(0)).join('');
+    })
+}
+createUsernames(accounts);
+
+
+/* ---------------- LOGIN ---------------- */
+let currentAccount;
+
+btnLogin.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    currentAccount = accounts.find((account) => account.username === inputLoginUsername.value);
+
+    if (currentAccount?.password === Number(inputLoginPassword.value)) {
+        // Display UI and Welcome
+        labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ').at(0)}`;
+        containerApp.style.opacity = 1;
+
+        // Update UI
+        updateUI(currentAccount);
+
+    } else {
+        // Hide UI and Warning SMS
+        labelWelcome.textContent = "Login failed!";
+        containerApp.style.opacity = 0;
+    }
+
+    // Clear Fields
+    inputLoginUsername.value = inputLoginPassword.value = "";
+    inputLoginPassword.blur();
+})
+
+
 /* ---------------- MOVEMENTS ---------------- */
 function displayMovements(account) {
     containerMovements.innerHTML = "";
@@ -90,8 +136,6 @@ function displayMovements(account) {
     })
 }
 
-displayMovements(accounts[0])
-
 
 /* ---------------- SUMMARY ---------------- */
 function displaySummary(account) {
@@ -109,12 +153,9 @@ function displaySummary(account) {
     labelSumInterest.textContent = `${interest}`
 }
 
-displaySummary(accounts[0])
-
 
 /* ---------------- BALANCE ---------------- */
 function displayBalance(account) {
     account.balance = account.movements.reduce((acc, balance) => acc + balance, 0);
     labelBalance.textContent = `${account.balance}`
 }
-displayBalance(accounts[0])
