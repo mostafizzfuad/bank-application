@@ -160,6 +160,139 @@ nav {
 }
 /***** movements css end *****/
 
+/***** summary css start *****/
+.summary {
+    grid-row: 5/6;
+    display: flex;
+    align-items: baseline;
+    padding: 0 0.3rem;
+    margin-top: 1rem;
+}
+
+.summary-label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-right: 0.8rem;
+}
+
+.summary-value {
+    font-size: 2.2rem;
+    margin-right: 2.5rem;
+}
+
+.summary-value-in,
+.summary-value-interest {
+    color: #00b79f;
+}
+
+.summary-value-out {
+    color: #f3442a;
+}
+
+.btn-sort {
+    margin-left: auto;
+    background: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-family: inherit;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+/***** summary css end *****/
 
 
+/***** transfer + loan + close css start *****/
+.operation {
+    border-radius: 1rem;
+    padding: 3rem 4rem;
+    color: #333;
+}
 
+.operation-transfer {
+    background-color: #00b79f;
+}
+
+.operation-loan {
+    background-color: #f3442a;
+}
+
+.operation-close {
+    background-color: #fdb850;
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 2.5fr 2.5fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.4rem 1rem;
+}
+
+.form.form-loan {
+    grid-template-columns: 2.5fr 1fr 2.5fr;
+}
+
+.form-label-loan {
+    grid-row: 2;
+}
+
+.form-input {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #333;
+    padding: 0.3rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+}
+
+.form-input:focus {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.form-label {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.form-btn {
+    border-radius: 0.5rem;
+    font-size: 1.8rem;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.form-btn:focus {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+/***** transfer + loan + close css end *****/
+
+/***** logout css *****/
+.logout-timer {
+    padding: 0 0.3rem;
+    margin-top: 2rem;
+    text-align: right;
+    font-size: 1.3rem;
+}
+
+.timer {
+    font-weight: 600;
+}
+
+/***** footer css *****/
+footer {
+    text-align: center;
+    font-size: 1.3rem;
+    color: #888;
+    padding-top: 3rem;
+}
