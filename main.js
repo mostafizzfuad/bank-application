@@ -159,3 +159,61 @@ function displayBalance(account) {
     account.balance = account.movements.reduce((acc, balance) => acc + balance, 0);
     labelBalance.textContent = `${account.balance}`
 }
+
+
+/* ---------------- TRANSFER ---------------- */
+btnTransfer.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const receiverAccount = accounts.find(
+        (account) => account.username === inputTransferTo.value
+    );
+
+    const amount = Number(inputTransferAmount.value);
+
+    // clear fields
+    inputTransferTo.value = inputTransferAmount.value = "";
+    inputTransferAmount.blur();
+
+    if (
+        amount > 0 &&
+        amount <= currentAccount.balance &&
+        currentAccount.username !== receiverAccount.username &&
+        receiverAccount
+    ) {
+        // transfer money
+        currentAccount.movements.push(-amount);
+        receiverAccount.movements.push(amount);
+        // update UI
+        updateUI(currentAccount);
+        // show message
+        labelWelcome.textContent = "Transaction successful!";
+    } else {
+        labelWelcome.textContent = "Transaction failed!";
+    }
+});
+
+
+/* ---------------- LOAN ---------------- */
+btnLoan.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const amount = Number(inputLoanAmount.value);
+
+    if (amount > 0 && currentAccount.movements.some((move) => move >= amount * 0.1)) {
+        // add positive movement into current account
+        currentAccount.movements.push(amount);
+        // add current time
+        currentAccount.movementsDates.push(new Date().toISOString());
+        // update ui
+        updateUI(currentAccount);
+        // message
+        labelWelcome.textContent = "loan successful";
+    } else {
+        labelWelcome.textContent = "loan not successful";
+    }
+
+    // clear
+    inputLoanAmount.value = "";
+    inputLoanAmount.blur();
+});
