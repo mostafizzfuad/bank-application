@@ -118,10 +118,10 @@ btnLogin.addEventListener('click', (e) => {
 
 
 /* ---------------- MOVEMENTS ---------------- */
-function displayMovements(account) {
+function displayMovements(account, sort = false) {
     containerMovements.innerHTML = "";
 
-    const moves = account.movements;
+    const moves = sort ? account.movements.slice(0).sort((a, b) => a - b) : account.movements;
     moves.forEach((move, i) => {
     const type = move > 0 ? "deposit" : "withdrawal";
 
@@ -216,4 +216,40 @@ btnLoan.addEventListener("click", function (e) {
     // clear
     inputLoanAmount.value = "";
     inputLoanAmount.blur();
+});
+
+
+/* ---------------- CLOSE ACCOUNT ---------------- */
+btnClose.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    if (
+        currentAccount.username === inputCloseUsername.value &&
+        currentAccount.password === Number(inputClosePassword.value)
+    ) {
+        const index = accounts.findIndex((account) => account.username === currentAccount.username);
+        // delete
+        accounts.splice(index, 1);
+        // hide ui
+        containerApp.style.opacity = 0;
+        // sms
+        labelWelcome.textContent = "account deleted";
+    } else {
+        labelWelcome.textContent = "delete can not be done";
+    }
+
+    // clear fileds
+    inputCloseUsername.value = inputClosePassword.value = "";
+    inputClosePassword.blur();
+});
+
+
+/* ---------------- SORT ---------------- */
+let sortedMove = false;
+
+btnSort.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    displayMovements(currentAccount, !sortedMove);
+    sortedMove = !sortedMove;
 });
