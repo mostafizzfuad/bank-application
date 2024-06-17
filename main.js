@@ -3,7 +3,7 @@
 const accounts = [
     {
         owner: "Mostafizur Rahman",
-        movements: [2500, 500, -750, 1200, 3200, -1500, 500, 1200, -1750, 1800],
+        movements: [2500, 500, -750, 1200, 3200, -1500, 500, 1400, -1750, 1800],
         interestRate: 1.5,
         password: 1234,
         movementsDates: [
@@ -116,7 +116,7 @@ createUsernames(accounts);
 
 
 /* ---------------- LOGIN ---------------- */
-let currentAccount;
+let currentAccount, timer;
 
 btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
@@ -143,16 +143,20 @@ btnLogin.addEventListener('click', (e) => {
                 options
             ).format(now);
 
+            // Log Out Timer
+            if (timer) clearInterval(timer)
+            timer = logOut();
+
             // Update UI
             updateUI(currentAccount);
-        }, 3000);
+        }, 2000);
 
     } else {
         setTimeout(() => {
             // Hide UI and Warning SMS
             labelWelcome.textContent = "Login failed!";
             containerApp.style.opacity = 0;
-        }, 3000);
+        }, 2000);
     }
 
     // Clear Fields
@@ -261,11 +265,20 @@ btnTransfer.addEventListener("click", function (e) {
             updateUI(currentAccount);
             // show message
             labelWelcome.textContent = "Transaction successful!";
-        }, 3000);
+        }, 2000);
+
+        // Log Out Timer
+        if (timer) clearInterval(timer)
+        timer = logOut();
+
     } else {
         setTimeout(() => {
             labelWelcome.textContent = "Transaction failed!";
-        }, 3000);
+        }, 2000);
+
+        // Log Out Timer
+        if (timer) clearInterval(timer)
+        timer = logOut();
     }
 });
 
@@ -286,11 +299,20 @@ btnLoan.addEventListener("click", function (e) {
             updateUI(currentAccount);
             // message
             labelWelcome.textContent = "loan successful";
-        }, 3000);
+        }, 2000);
+
+        // Log Out Timer
+        if (timer) clearInterval(timer)
+        timer = logOut();
+
     } else {
         setTimeout(() => {
             labelWelcome.textContent = "loan not successful";
-        }, 3000);
+        }, 2000);
+
+        // Log Out Timer
+        if (timer) clearInterval(timer)
+        timer = logOut();
     }
 
     // clear
@@ -315,11 +337,21 @@ btnClose.addEventListener("click", function (e) {
             containerApp.style.opacity = 0;
             // sms
             labelWelcome.textContent = "account deleted";
-        }, 3000);
+        }, 2000);
+
+        
+        // Log Out Timer
+        if (timer) clearInterval(timer)
+        timer = logOut();
+
     } else {
         setTimeout(() => {
             labelWelcome.textContent = "delete can not be done";
-        }, 3000);
+        }, 2000);
+
+        // Log Out Timer
+        if (timer) clearInterval(timer)
+        timer = logOut();
     }
 
     // clear fileds
@@ -337,3 +369,30 @@ btnSort.addEventListener("click", function (e) {
     displayMovements(currentAccount, !sortedMove);
     sortedMove = !sortedMove;
 });
+
+
+/* ---------------- TIMER ---------------- */
+function logOut() {
+    labelTimer.textContent = "";
+
+    let time = 120;
+
+    const clock = () => {
+        const min = String(Math.trunc(time / 60)).padStart(2, 0);
+        const sec = String(time % 60).padStart(2, 0);
+
+        labelTimer.textContent = `${min}:${sec}`;
+
+        if (time === 0) {
+            clearInterval(timer);
+            labelWelcome.textContent = "You've been logged out!";
+            containerApp.style.opacity = 0;
+        }
+        time--;
+    };
+
+    clock();
+
+    timer = setInterval(clock, 1000);
+    return timer;
+}
