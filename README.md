@@ -12,5 +12,5 @@
 Account 1 [ Username: mr, Password: 1234 ] <br>
 Account 2 [ Username: sba, Password: 5678 ] <br>
 
-## Login Details:
+## Live Link:
 live link : https://mrf-bank.netlify.app/
